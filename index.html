@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<title>Checkbox Group</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+	<style>
+		body{
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow-x: hidden;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.321;
+            color: #333;
+        }
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+        	max-width: 1140px;
+        	margin: 0 auto;
+        	padding: 0 15px;
+        }
+
+        .checkbox-group-wrapper {
+		    margin: 80px 0;
+		}
+
+		.checkbox-group-inner-wrapper + .checkbox-group-inner-wrapper {
+		    margin-top: 50px;
+		}
+
+		.title-checkbox-wrapper {
+		    margin-bottom: 15px;
+		}
+
+		.checkbox-list-wrapper {
+		    display: flex;
+		    flex-wrap: wrap;
+		    margin: 0 -15px;
+		}
+
+		.checkbox-list-wrapper .form-group {
+		    padding: 0 15px;
+		    max-width: 20%;
+		    flex: 0 0 20%;
+		}
+
+		.checkbox-group-inner-wrapper .form-group {
+		    display: flex;
+		    align-items: center;
+		}
+        
+	</style>
+</head>
+<body>
+	<main>
+		<section>
+			<div class="container">
+				<div class="checkbox-group-wrapper">
+					<div class="checkbox-group-inner-wrapper">
+						<div class="title-checkbox-wrapper">
+							<div class="form-group">
+								<input class="form-control" type="checkbox" id="group-1">
+								<label for="group-1">Group 1</label>
+							</div>
+						</div>
+						<div class="checkbox-list-wrapper">
+							<div class="form-group">
+								<input class="form-control" type="checkbox" id="lorem">
+								<label for="lorem">Lorem</label>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="checkbox" id="ipsum">
+								<label for="ipsum">Ipsum</label>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="checkbox" id="doller">
+								<label for="doller">Doller</label>
+							</div>
+						</div>
+					</div>
+					<div class="checkbox-group-inner-wrapper">
+						<div class="title-checkbox-wrapper">
+							<div class="form-group">
+								<input class="form-control" type="checkbox" id="group-2">
+								<label for="group-2">Group 2</label>
+							</div>
+						</div>
+						<div class="checkbox-list-wrapper">
+							<div class="form-group">
+								<input class="form-control" type="checkbox" id="lorem1">
+								<label for="lorem1">Lorem</label>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="checkbox" id="ipsum1">
+								<label for="ipsum1">Ipsum</label>
+							</div>
+							<div class="form-group">
+								<input class="form-control" type="checkbox" id="doller2">
+								<label for="doller2">Doller</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>	
+
+	<script src="js/jquery.js"></script>
+	<script>
+
+		$(function(){
+
+			jQuery(".form-group .form-control").each(function(){
+	            var _this = jQuery(this);
+	            _this.change(function(){
+	            	if (_this.closest('.title-checkbox-wrapper').length) {
+						if (_this.is(":checked")) {
+		                    _this.closest('.title-checkbox-wrapper').siblings('.checkbox-list-wrapper').find('.form-control').prop('checked', true); 
+		                }else{
+		                	_this.closest('.title-checkbox-wrapper').siblings('.checkbox-list-wrapper').find('.form-control').prop('checked', false); 
+		                }
+	            	} else {
+	            		var unchecked_item = _this.closest('.checkbox-list-wrapper').find('.form-control:not(:checked)').length;
+	            		if (unchecked_item > 0) {
+	            			_this.closest('.checkbox-list-wrapper').siblings('.title-checkbox-wrapper').find('.form-control').prop('checked', false); 	
+	            		}else{
+	            			_this.closest('.checkbox-list-wrapper').siblings('.title-checkbox-wrapper').find('.form-control').prop('checked', true); 	
+	            		}
+	            	}
+
+	            }); 
+	        });
+
+		});
+
+	</script>
+</body>
+
+</html>
